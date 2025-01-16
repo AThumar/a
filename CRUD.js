@@ -24,9 +24,15 @@ app.put("/:UID", (req, res) => {
     const UID = req.params.UID;
     const { Name, Branch, Sem, Div, Rollno} = req.body;
     student = student.map((student) =>
-        
+
          (student.UID === UID ? {UID, Name, Branch, Sem, Div, Rollno} : student)); 
     res.json(student);    
+});
+//to delete  a student
+app.delete("/:UID", (req, res) => {
+    const UID = req.params.UID;
+    student = student.filter((student) => student.UID !== UID);
+    res.json(student);
 });
 app.listen(port, () =>
   console.log(`Server Started at http://localhost:${port}!`)
